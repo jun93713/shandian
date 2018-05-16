@@ -2,34 +2,142 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>猪猪妹的记账本</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+      .form-group input[type="checkbox"] {
+          display: none;
+      }
+
+      .form-group input[type="checkbox"] + .btn-group > label span {
+          width: 20px;
+      }
+
+      .form-group input[type="checkbox"] + .btn-group > label span:first-child {
+          display: none;
+      }
+      .form-group input[type="checkbox"] + .btn-group > label span:last-child {
+          display: inline-block;
+      }
+
+      .form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
+          display: inline-block;
+      }
+      .form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
+          display: none;
+      }
+      .top-buffer {
+        margin-top: 20px
+      }
+    </style>
+  </head>
   </head>
   <body>
+    <nav class="navbar navbar-default bg-primary" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img src="https://i.pinimg.com/564x/e6/ec/8c/e6ec8cb3da432fa2a83928f3e95a883f.jpg" alt="Peppa" class="img-circle col-xs-2">
+        <a class="navbar-brand" href="/" style="font-size: 24px; color: pink">Peppa Pig</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/neworder">new order</a></li>
+          <li><a href="/history">history</a></li>
+        </ul>
+        <div class="col-sm-3 col-md-3">
+          <form class="navbar-form" role="search" action="/search" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="words" required>
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div><!-- /.navbar-collapse -->
+    </nav>
+
     <form action="./update" method="post">
     	{% csrf_token %}
-    	Name: {{order.name}}
-      Item: {{order.item}}
-      isPaid:
-      <input name="isPaid" type="checkbox"
-      {% if order.isPaid %} checked {% endif %} >
-
-      isPurchased:
-      <input name="isPurchased" type="checkbox"
-      {% if order.isPurchased %} checked {% endif %} >
-
-      isArrived:
-      <input name="isArrived" type="checkbox"
-      {% if order.isArrived %} checked {% endif %} >
-
-      isShipped:
-      <input name="isShipped" type="checkbox"
-      {% if order.isShipped %} checked {% endif %} >
-
-    	<input type="submit" value="submit">
+      <div class="form-group row">
+        <div class="col-sm-8">
+          <input type="text" class="form-control top-buffer" name="name" value="{{order.name}}" readonly>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <input type="text" class="form-control top-buffer" name="item" value="{{order.item}}" readonly>
+        </div>
+      </div>
+      <div class="form-group row top-buffer">
+        <div class="col-sm-10">
+          <span class="col-sm-1"><span>
+          <input type="checkbox" name="isPaid" id="fancy-checkbox-primary" autocomplete="off" {% if order.isPaid %} checked {% endif %}/>
+          <div class="[ btn-group ]">
+              <label for="fancy-checkbox-primary" class="[ btn btn-primary ]">
+                  <span class="[ glyphicon glyphicon-ok ]"></span>
+                  <span> </span>
+              </label>
+              <label for="fancy-checkbox-primary" class="[ btn btn-default active ]">
+                   isPa
+              </label>
+          </div>
+          <span class="col-sm-1"><span>
+          <input type="checkbox" name="isPurchased" id="fancy-checkbox-success" autocomplete="off" {% if order.isPurchased %} checked {% endif %}/>
+          <div class="[ btn-group ]">
+              <label for="fancy-checkbox-success" class="[ btn btn-success ]">
+                  <span class="[ glyphicon glyphicon-ok ]"></span>
+                  <span> </span>
+              </label>
+              <label for="fancy-checkbox-success" class="[ btn btn-default active ]">
+                  isPu
+              </label>
+          </div>
+          <span class="col-sm-1"><span>
+          <input type="checkbox" name="isShipped" id="fancy-checkbox-info" autocomplete="off" {% if order.isShipped %} checked {% endif %}/>
+          <div class="[ btn-group ]">
+              <label for="fancy-checkbox-info" class="[ btn btn-info ]">
+                  <span class="[ glyphicon glyphicon-ok ]"></span>
+                  <span> </span>
+              </label>
+              <label for="fancy-checkbox-info" class="[ btn btn-default active ]">
+                  isSh
+              </label>
+          </div>
+          <span class="col-sm-1"><span>
+          <input type="checkbox" name="isArrived" id="fancy-checkbox-warning" autocomplete="off" />
+            <div class="[ btn-group ]">
+                <label for="fancy-checkbox-warning" class="[ btn btn-warning ]">
+                    <span class="[ glyphicon glyphicon-ok ]"></span>
+                    <span> </span>
+                </label>
+                <label for="fancy-checkbox-warning" class="[ btn btn-default active ]">
+                    isAr
+                </label>
+            </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <button type="submit" class="btn btn-primary btn-lg btn-block top-buffer">submit</button>
+        </div>
+      </div>
     </form>
     <form action="./delete" method="post">
       {% csrf_token %}
-      <input type="submit" value="Delete">
+      <button type="submit" class="btn btn-danger btn-lg btn-block top-buffer">Delete</button>
     </form>
   </body>
 </html>

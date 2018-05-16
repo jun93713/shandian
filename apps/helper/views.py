@@ -6,7 +6,7 @@ from django.db.models import Q
 #home page shows all the orders that havent shipped out and sort by desc on id(newest objects show 1st)
 def index(request):
     context = {
-        "orders": Order.objects.filter(isShipped=False).order_by('-id')
+        "orders": Order.objects.filter(isArrived=False).order_by('-id')
     }
     return render(request, 'helper/index.html', context)
 
@@ -42,7 +42,7 @@ def updateOne(request, id):
 #render a page to display all shipped orders
 def showAll(request):
     context = {
-        "orders": Order.objects.filter(isShipped = True).order_by('-id')
+        "orders": Order.objects.filter(isArrived = True).order_by('-id')
     }
     return render(request, 'helper/showAllPage.html', context)
 
@@ -54,7 +54,7 @@ def search(request):
         context = {
             "orders": Order.objects.filter(
                 Q(name__contains = word) | Q(item__contains = word),
-                Q(isShipped = False)
+                Q(isArrived = False)
             )
         }
 

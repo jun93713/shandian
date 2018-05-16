@@ -14,9 +14,6 @@ class OrderManager(models.Manager):
         if post.get('isPurchased'):
             isPurchased = True
 
-        if post.get('isArrived'):
-            isArrived = True
-
         if post.get('isShipped'):
             isShipped = True
 
@@ -56,6 +53,8 @@ class OrderManager(models.Manager):
         else:
             order.isShipped = False
 
+        print(post)
+
         order.save()
 
         return True
@@ -65,7 +64,7 @@ class Order(models.Model):
     item = models.CharField(max_length = 40)
     isPaid = models.BooleanField()
     isPurchased = models.BooleanField()
-    isArrived = models.BooleanField()
+    isArrived = models.BooleanField(default=False)
     isShipped = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
