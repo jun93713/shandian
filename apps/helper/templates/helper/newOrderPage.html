@@ -51,8 +51,8 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/neworder">new order</a></li>
-          <li><a href="/history">history</a></li>
+          <li class="active"><a href="/neworder">又有人下单啦</a></li>
+          <li><a href="/history">国内收货记录</a></li>
         </ul>
         <div class="col-sm-3 col-md-3">
           <form class="navbar-form" role="search" action="/search" method="post">
@@ -73,12 +73,12 @@
     	{% csrf_token %}
       <div class="form-group row">
         <div class="col-sm-8">
-          <input type="text" class="form-control top-buffer" name="name" placeholder="Name" required>
+          <input type="text" class="form-control top-buffer" name="name" placeholder="姓名" required>
         </div>
       </div>
       <div class="form-group row">
         <div class="col-sm-10">
-          <input type="text" class="form-control top-buffer" name="item" placeholder="Item" required>
+          <input type="text" class="form-control top-buffer" name="item" placeholder="物品" required>
         </div>
       </div>
       <div class="form-group row top-buffer">
@@ -91,7 +91,7 @@
                   <span> </span>
               </label>
               <label for="fancy-checkbox-primary" class="[ btn btn-default active ]">
-                   isPaid
+                   支付
               </label>
           </div>
           <span class="col-sm-2"><span>
@@ -102,7 +102,7 @@
                   <span> </span>
               </label>
               <label for="fancy-checkbox-success" class="[ btn btn-default active ]">
-                  isPurchased
+                  购买
               </label>
           </div>
           <span class="col-sm-2"><span>
@@ -113,14 +113,14 @@
                   <span> </span>
               </label>
               <label for="fancy-checkbox-info" class="[ btn btn-default active ]">
-                  isShipped
+                  发货
               </label>
           </div>
         </div>
       </div>
       <div class="form-group row">
         <div class="col-sm-12">
-          <button type="submit" class="btn btn-primary btn-lg btn-block top-buffer">submit</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block top-buffer">保存</button>
         </div>
       </div>
     </form>
