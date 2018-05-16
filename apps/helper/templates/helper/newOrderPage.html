@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href="/">home</a>
+    <form action="/create" method="post">
+    	{% csrf_token %}
+    	Name: <input type="text" name="name" placeholder="name" required>
+      Item: <input type="text" name="item" placeholder="item" required>
+      isPaid:
+      <input type="checkbox" name="isPaid">
+
+      isPurchased:
+      <input type="checkbox" name="isPurchased">
+
+      isArrived:
+      <input type="checkbox" name="isArrived">
+
+      isShipped:
+      <input type="checkbox" name="isShipped">
+
+    	<input type="submit" value="submit">
+    </form>
+  </body>
+</html>

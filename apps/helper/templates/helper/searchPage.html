@@ -5,12 +5,12 @@
     <title></title>
   </head>
   <body>
-    <a href="/neworder">new order</a>
     <form action="/search" method="post">
       {% csrf_token %}
       <input type="text" name='words' required>
       <input type="submit" value="search">
     </form>
+
     {% for order in orders %}
     <p>
       {{order.name}}
@@ -22,5 +22,6 @@
       <a href="{{order.id}}/manage">update</a>
     </p>
     {% endfor %}
+
   </body>
 </html>
