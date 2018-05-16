@@ -1,8 +1,14 @@
 from django.shortcuts import render, redirect
 from .models import Order
 
+
+#home page shows all the orders that havent shipped out and sort by desc on id(newest objects show 1st)
 def index(request):
-    return True
+    context = {
+        "order": Order.objects.filter(isShipped = Flase).order_by('-id')
+    }
+    return render(request, 'helper/index.html', context)
+
 
 def create(request):
     return True

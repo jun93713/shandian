@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href="/neworder">new order</a>
+    {% for order in orders %}
+    <p>
+      {{order.name}}
+      {{order.item}}
+      isPaid: {{order.isPaid}}
+      isPurchased: {{order.isPurchased}}
+      isArrived: {{order.isArrived}}
+      isShipped: {{order.isShipped}}
+      <a href="{{order.id}}/manage">update</a>
+    </p>
+    {% endfor %}
+  </body>
+</html>
