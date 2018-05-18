@@ -29,7 +29,6 @@
             <li><a href="/purchaselist">Purchase List</a></li>
             <li><a href="/shoplist">Ship List</a></li>
             <li><a href="/history">History</a></li>
-            <li><a href="/about">About</a></li>
           </ul>
           <div class="col-sm-3 col-md-3">
             <form class="navbar-form" role="search" action="/search" method="post">
@@ -46,46 +45,18 @@
       </nav>
 
     <div class="container">
-      <div class="row">
-        <div class="span5">
-          <table class="table table-striped table-condensed">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Item</th>
-                <th>Pay</th>
-                <th>Buy</th>
-                <th>Ship</th>
-                <th>More</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for order in orders %}
-              <tr>
-                <td class="text-primary">{{order.name}}</td>
-                <td class="text-danger">{{order.item}}</td>
-                <td>
-                  {% if order.isPaid %}
-                  <span class="fa fa-money fa-2x"></span>
-                  {% endif %}
-                </td>
-                <td>
-                  {% if order.isPurchased %}
-                  <span class="fa fa-check-square-o fa-2x"></span>
-                  {% endif %}
-                </td>
-                <td>
-                  {% if order.isShipped %}
-                  <span class="fa fa-plane fa-2x"></span>
-                  {% endif %}
-                </td>
-                <td><a href="{{order.id}}/manage" class="btn btn-primary">Manage</a></td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <p>To anyone who is taking a look at this site:</p>
+      <p>I appreciate your interest on me. A little background about this project:</p>
+      <p>My wife is a freelancer shopping consultant who introduce and help purchasing merchandise sold in U.S. to her clients
+        in China and charges small amout as labor. Anyway, she needs something to help her tracking her orders
+        as her clients grow more. Therefore I wrote this personized project for her. It is mainly used on mobile.</p>
+      <p>This is a Django project hosting on AWS EC2 Ubuntu Server using Gunicorn and nginx.</p>
+      <p>No frontend framework, it's a simple site, most bootstrap and a little customized checkbox to make cute ones. You know, it's for girl! </p>
+      <p>No complicated db models. Using sqlite3 comes with Django</p>
+      <p>No any authenticity on anything. The purpose is to make it simple and clean to use. Also, this is only a copy.</p>
+      <p>Last, thank you for checking this out and read this page. The frontend part takes much more time than backend. :(</p>
+      <p>Thanks again</p>
+      <p>--Jun</p>
     </div>
   </body>
 </html>

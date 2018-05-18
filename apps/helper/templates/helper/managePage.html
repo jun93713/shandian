@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>猪猪妹的记账本</title>
+    <title>Notes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -31,7 +31,7 @@
           display: none;
       }
       .top-buffer {
-        margin-top: 20px
+        margin-top: 10px
       }
     </style>
   </head>
@@ -46,15 +46,16 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <img src="https://i.pinimg.com/564x/e6/ec/8c/e6ec8cb3da432fa2a83928f3e95a883f.jpg" alt="Peppa" class="img-circle col-xs-2">
-        <a class="navbar-brand" href="/" style="font-size: 24px; color: pink">Peppa Pig</a>
+        <a class="navbar-brand" href="/" style="font-size: 24px; color: pink">Shopping notes</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/neworder">又有人下单啦</a></li>
-          <li><a href="/history">国内收货记录</a></li>
+          <li class="active"><a href="/neworder">New Order</a></li>
+          <li><a href="/purchaselist">Purchase List</a></li>
+          <li><a href="/shoplist">Ship List</a></li>
+          <li><a href="/history">History</a></li>
         </ul>
         <div class="col-sm-3 col-md-3">
           <form class="navbar-form" role="search" action="/search" method="post">
@@ -73,7 +74,7 @@
     <form action="./update" method="post">
     	{% csrf_token %}
       <div class="form-group row">
-        <div class="col-sm-8">
+        <div class="col-sm-10">
           <input type="text" class="form-control top-buffer" name="name" value="{{order.name}}" readonly>
         </div>
       </div>
@@ -82,9 +83,8 @@
           <input type="text" class="form-control top-buffer" name="item" value="{{order.item}}" readonly>
         </div>
       </div>
-      <div class="form-group row top-buffer">
-        <div class="col-sm-10">
-          <span class="col-sm-1"><span>
+      <div class="form-group row top-buffer col-sm-12">
+        <div class="col-sm-6 top-buffer">
           <input type="checkbox" name="isPaid" id="fancy-checkbox-primary" autocomplete="off" {% if order.isPaid %} checked {% endif %}/>
           <div class="[ btn-group ]">
               <label for="fancy-checkbox-primary" class="[ btn btn-primary ]">
@@ -92,10 +92,12 @@
                   <span> </span>
               </label>
               <label for="fancy-checkbox-primary" class="[ btn btn-default active ]">
-                   支付
+                   Paid
               </label>
           </div>
-          <span class="col-sm-1"><span>
+        </div>
+
+        <div class="col-sm-6 top-buffer">
           <input type="checkbox" name="isPurchased" id="fancy-checkbox-success" autocomplete="off" {% if order.isPurchased %} checked {% endif %}/>
           <div class="[ btn-group ]">
               <label for="fancy-checkbox-success" class="[ btn btn-success ]">
@@ -103,10 +105,12 @@
                   <span> </span>
               </label>
               <label for="fancy-checkbox-success" class="[ btn btn-default active ]">
-                  购买
+                  Purchased
               </label>
           </div>
-          <span class="col-sm-1"><span>
+        </div>
+
+        <div class="col-sm-6 top-buffer">
           <input type="checkbox" name="isShipped" id="fancy-checkbox-info" autocomplete="off" {% if order.isShipped %} checked {% endif %}/>
           <div class="[ btn-group ]">
               <label for="fancy-checkbox-info" class="[ btn btn-info ]">
@@ -114,31 +118,33 @@
                   <span> </span>
               </label>
               <label for="fancy-checkbox-info" class="[ btn btn-default active ]">
-                  发货
+                  Shipped
               </label>
           </div>
-          <span class="col-sm-1"><span>
-          <input type="checkbox" name="isArrived" id="fancy-checkbox-warning" autocomplete="off" />
-            <div class="[ btn-group ]">
-                <label for="fancy-checkbox-warning" class="[ btn btn-warning ]">
-                    <span class="[ glyphicon glyphicon-ok ]"></span>
-                    <span> </span>
-                </label>
-                <label for="fancy-checkbox-warning" class="[ btn btn-default active ]">
-                    签收
-                </label>
-            </div>
+        </div>
+        <div class="col-sm-6 top-buffer">
+        <input type="checkbox" name="isArrived" id="fancy-checkbox-warning" autocomplete="off" />
+          <div class="[ btn-group ]">
+              <label for="fancy-checkbox-warning" class="[ btn btn-warning ]">
+                  <span class="[ glyphicon glyphicon-ok ]"></span>
+                  <span> </span>
+              </label>
+              <label for="fancy-checkbox-warning" class="[ btn btn-default active ]">
+                  Arrived
+              </label>
+          </div>
         </div>
       </div>
+
       <div class="form-group row">
         <div class="col-sm-12">
-          <button type="submit" class="btn btn-primary btn-lg btn-block top-buffer">保存</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block top-buffer">Save</button>
         </div>
       </div>
     </form>
     <form action="./delete" method="post">
       {% csrf_token %}
-      <button type="submit" class="btn btn-danger btn-lg btn-block top-buffer">删除 没事不要按哦</button>
+      <button type="submit" class="btn btn-danger btn-lg btn-block top-buffer">Delete</button>
     </form>
   </body>
 </html>

@@ -64,3 +64,49 @@ def search(request):
         }
 
     return render(request, 'helper/searchPage.html', context)
+
+def plist(request):
+    context = {
+        "orders": Order.objects.filter(isPurchased = False).order_by('id')
+    }
+    return render(request, 'helper/notPurchased.html', context)
+
+def slist(request):
+    context = {
+        "orders": Order.objects.filter(isShipped = False).order_by('id')
+    }
+    return render(request, 'helper/notShipped.html', context)
+
+def about(request):
+    return render(request, 'helper/about.html')
+
+def groupPurchase(request):
+    if request.method == "POST":
+        ids = []
+        for key in request.POST:
+            ids.append(key)
+        for id in ids[1:]:
+            order = Order.objects.get(id=id)
+            order.isPurchased = True
+            order.save()
+    return redirect('/purchaselist')
+
+def groupShip(request):
+    if request.method == "POST":
+        ids = []
+        for key in request.POST:
+            ids.append(key)
+        for id in ids[1:]:
+            order = Order.objects.get(id=id)
+            order.isShipped = True
+            order.save()
+    return redirect('/shoplist')
+
+def groupDelete(request):
+    if request.method == "POST":
+        ids = []
+        for key in request.POST:
+            ids.append(key)
+        for id in ids[1:]:
+            Order.objects.get(id=id).delete()
+    return redirect('/shoplist')
